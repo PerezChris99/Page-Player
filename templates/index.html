@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Player</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Page Player</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="file" accept=".pdf,.docx">
+        <button type="submit">Upload</button>
+    </form>
+    <div id="audio-controls">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="rewind">Rewind</button>
+        <button id="forward">Forward</button>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

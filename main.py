@@ -1,9 +1,8 @@
-from flask import Flask, request, render_template
-from services.file_service import FileService
+from flask import Flask, request, jsonify, render_template
 from controllers.audio_controller import AudioController
+import os
 
 app = Flask(__name__)
-file_service = FileService()
 audio_controller = AudioController()
 
 @app.route('/')
@@ -11,35 +10,35 @@ def index():
     return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
-def upload():
-    if 'file' not in request.files:
-        return 'No file part', 400
+def upload_file():
     file = request.files['file']
-    if file.filename == '':
-        return 'No selected file', 400
-    file_path = file_service.upload_file(file)
-    audio_controller.load_file(file_path)
-    return 'File uploaded and ready for reading', 200
+    if file:
+        file_path = os.path.join('uploads', file.filename)
+        file.save(file_path)
+        # Process the file (convert to text, etc.)
+        return jsonify({'message': 'File uploaded successfully', 'file': file.filename})
+    return jsonify({'message': 'No file uploaded'}), 400
 
 @app.route('/play', methods=['POST'])
-def play():
-    audio_controller.play()
-    return 'Playing audio', 200
+def play_audio():
+    # Play audio logic
+    audio_controller.play_audio("Sample text to play")
+    return '', 204
 
 @app.route('/pause', methods=['POST'])
-def pause():
-    audio_controller.pause()
-    return 'Audio paused', 200
+def pause_audio():
+    audio_controller.pause_audio()
+    return '', 204
 
 @app.route('/rewind', methods=['POST'])
-def rewind():
-    audio_controller.rewind()
-    return 'Audio rewinded', 200
+def rewind_audio():
+    audio_controller.rewind_audio(10)  # Rewind by 10 seconds
+    return '', 204
 
 @app.route('/forward', methods=['POST'])
-def forward():
-    audio_controller.forward()
-    return 'Audio forwarded', 200
+def forward_audio():
+    audio_controller.forward_audio(10)  # Forward by 10 seconds
+    return '', 204
 
 if __name__ == '__main__':
     app.run(debug=True)
