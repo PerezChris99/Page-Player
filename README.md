@@ -12,19 +12,29 @@ This project is a Python application that allows users to upload books in Word o
 ## Project Structure
 
 ```
-book-reader-app
+# Page Player
+
+Page Player is a Python application that allows you to upload a book in either Word or PDF format and have it read to you via audio. You can pause, play, rewind, and forward the audio.
+
+## Project Structure
+
+```plaintext
+page-player
 ├── src
-│   ├── main.py               # Entry point of the application
+│   ├── main.py
 │   ├── controllers
-│   │   └── audio_controller.py # Manages audio playback
+│   │   └── audio_controller.py
 │   ├── services
-│   │   └── file_service.py     # Handles file operations
-│   └── utils
-│       └── audio_utils.py      # Utility functions for audio processing
-├── requirements.txt           # Project dependencies
-├── README.md                  # Project documentation
-└── .gitignore                 # Files to ignore in version control
-```
+│   │   └── file_service.py
+│   ├── utils
+│   │   └── audio_utils.py
+│   ├── templates
+│   │   ├── index.html
+│   │   └── style.css
+│   ├── static
+│   │   └── script.js
+├── requirements.txt
+└── README.md
 
 ## Setup Instructions
 
