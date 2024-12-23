@@ -5,6 +5,10 @@ import os
 app = Flask(__name__)
 audio_controller = AudioController()
 
+# Ensure the uploads directory exists
+if not os.path.exists('uploads'):
+    os.makedirs('uploads')
+
 @app.route('/')
 def index():
     return render_template('index.html')
